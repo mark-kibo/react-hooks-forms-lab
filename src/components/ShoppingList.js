@@ -5,12 +5,17 @@ import Item from "./Item";
 
 function ShoppingList({ items }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
-
+  const [myData , setMyData]=useState(items)
+  console.log(myData)
   function handleCategoryChange(event) {
     setSelectedCategory(event.target.value);
   }
 
-  const itemsToDisplay = items.filter((item) => {
+  function updateData(data){
+    setMyData([...myData, data])
+  }
+
+  const itemsToDisplay = myData.filter((item) => {
     if (selectedCategory === "All") return true;
 
     return item.category === selectedCategory;
@@ -18,7 +23,7 @@ function ShoppingList({ items }) {
 
   return (
     <div className="ShoppingList">
-      <ItemForm />
+      <ItemForm onItemFormSubmit={updateData}/>
       <Filter onCategoryChange={handleCategoryChange} />
       <ul className="Items">
         {itemsToDisplay.map((item) => (
