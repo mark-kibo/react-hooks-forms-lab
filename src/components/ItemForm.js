@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 
 function ItemForm(props) {
-  console.log(props)
+  // console.log(props)
   const [name, setName]=useState("")
   const [category, setCategory]=useState("Produce")
 
